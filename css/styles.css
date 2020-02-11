@@ -12,6 +12,26 @@ body {
   margin-right: 0px !important;
   margin-top: 30px;
 }
+table{
+   border: 1px solid cornsilk;
+   margin: auto;
+}
+td{
+  width: 10%;
+}
+tr{
+   text-align: center;
+   
+}
+
+th{
+   background-color: darkcyan;
+   width: 10%;
+   text-align: center;
+}
+td{
+   background-color: darkkhaki;
+}
 
 /* Footer */
 

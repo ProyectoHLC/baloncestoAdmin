@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <?php
+	require 'Medoo.php';
+	use Medoo\Medoo;
+
+	//Establecemos la conexión con la base de datos.
+	//Crea una instancia de la clase Medoo. (Se crea un objeto)
+	$database = new Medoo([
+		'database_type' => 'mysql',
+		'database_name' => 'bd2',
+		'server' => 'localhost',
+		'username' => 'root',
+		'password' => ''
+	]);
+	?>
     <title>Liga Baloncesto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -69,21 +83,59 @@
 		  	<div class="row">
 		  		<div class="col-md-6">
 		  			<div class="content-box-large">
-		  				<div class="panel-heading">
-							<div class="panel-title">Datos Liga</div>
-							
-							<div class="panel-options">
-								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+					
+						  <?php
+							  $resultado = $database->select("hospitales","*",true);
+							  $count = $database->count("hospitales","*",true);
+							  if(($count)==0){
+								echo '<div class="panel-heading">
+								<div class="panel-title">Datos Liga</div>
 							</div>
-						</div>
-		  				<div class="panel-body">
-							<form action="principal.php" method="post">
+							  <div class="panel-body">
+							  <form action="principal.php" method="post">
 								<p>Nombre: <input type="text" name="name" /></p>
 								<p>Año: <input type="password" name="year" /></p>
 								<p>Descripcion: <input type="password" name="description" /></p>
 								<p><input type="submit" value="Guardar" /></p>
-							   </form>
+							   </form>';
+							  }else{
+								echo '
+								<div class="panel-heading">
+							<div class="panel-title">Datos Liga</div>
+							
+							<div class="panel-options">
+								<a href="editLiga.php" data-rel="collapse"><i class="glyphicon glyphicon-edit"></i></a>
+							</div>
+						</div>
+		  				<div class="panel-body">
+								<table>
+								<tr> 
+								<th>cod_hospital</th>
+								<th>nombre</th>
+								<th>direccion</th>
+								<th>plazas</th>
+								</tr>
+								<tr> ';
+								foreach( $resultado as $result){
+
+									echo '<tr>
+									<td>';
+									echo $result['cod_hospital'];
+									echo '</td><td>';
+									echo $result['nombre'];
+									echo '</td><td>';
+									echo $result['direccion'];
+									echo '</td><td>';
+									echo $result['num_plazas'];
+									echo '</td>';
+									echo '</tr>';
+								   }
+								   echo '</table>';
+								   
+					}
+
+						  ?>
+							
 		  				</div>
 		  			</div>
 		  		</div>
