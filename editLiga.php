@@ -9,7 +9,7 @@
 	//Crea una instancia de la clase Medoo. (Se crea un objeto)
 	$database = new Medoo([
 		'database_type' => 'mysql',
-		'database_name' => 'bd2',
+		'database_name' => 'baloncesto',
 		'server' => 'localhost',
 		'username' => 'root',
 		'password' => ''
@@ -87,29 +87,34 @@
                             <div class="panel-title">Editar datos Liga</div>
 							    </div>
 							    <div class="panel-body">
-    <form action="editLiga.php" method="post">
-        <label>
-            <input name="nombre" placeholder="Nombre" type="text" />
-        </label><br>
-        <label>
-            <input name="anio" placeholder="Año" type="text" />
-        </label><br>
-        <label>
-            <input name="descripcion" placeholder="Descripción" type="text"/>
-        </label>
-        <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
-        <input type="hidden" name="codLiga"/>
-        <h3><a href='datosLiga.php'>Volver a datos liga</a></h3>
-    </form>
+                  <?php
+                  $resultado = $database->select("liga","*",true);
+                  foreach( $resultado as $result){
+                  echo '<form action="editLiga.php" method="post">
+                    <label>
+                        <input name="nombre" value="'.$result['nombre'].'" type="text" />
+                    </label><br>
+                    <label>
+                        <input name="anio" value="'.$result['year'].'" type="text" />
+                    </label><br>
+                    <label>
+                        <input name="descripcion" value="'.$result['descripcion'].'" type="text"/>
+                    </label>
+                    <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
+                    <input type="hidden" name="codLiga"/>
+                    <h3><a href="principal.php">Volver a datos liga</a></h3>
+                  </form>';
+                  }
+                  ?>
 <?php
 //Capturamos los nuevos datos introducidos por el usuario
 if (isset($_POST['actualizar'])){
-    if (isset($_POST['codLiga'])&&isset($_POST['nombre']) && isset($_POST['anio']) && isset($_POST['descripcion'])) {
-        $codLiga = $_POST['codLiga'];
+    if (isset($_POST['nombre']) && isset($_POST['anio']) && isset($_POST['descripcion'])) {
         $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
         $anio = $_POST['anio'];
-        $actualizacion = $database->update("hospitales", ["nombre" => $nombre]);
+        $descripcion = $_POST['descripcion'];
+
+        $actualizacion = $database->update("liga", ["nombre" => $nombre,"year" => $anio,"descripcion" => $descripcion]);
         // Comprobando errores
         if ($actualizacion == 0) {
             var_dump($database->error());

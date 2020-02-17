@@ -9,7 +9,7 @@
 	//Crea una instancia de la clase Medoo. (Se crea un objeto)
 	$database = new Medoo([
 		'database_type' => 'mysql',
-		'database_name' => 'bd2',
+		'database_name' => 'baloncesto',
 		'server' => 'localhost',
 		'username' => 'root',
 		'password' => ''
@@ -85,8 +85,8 @@
 		  			<div class="content-box-large">
 					
 						  <?php
-							  $resultado = $database->select("hospitales","*",true);
-							  $count = $database->count("hospitales","*",true);
+							  $resultado = $database->select("liga","*",true);
+							  $count = $database->count("liga","*",true);
 							  if(($count)==0){
 								echo '<div class="panel-heading">
 								<div class="panel-title">Datos Liga</div>
@@ -110,23 +110,23 @@
 		  				<div class="panel-body">
 								<table>
 								<tr> 
-								<th>cod_hospital</th>
-								<th>nombre</th>
-								<th>direccion</th>
-								<th>plazas</th>
+								<th>Cod_liga</th>
+								<th>Nombre</th>
+								<th>Año</th>
+								<th>Descripcion</th>
 								</tr>
 								<tr> ';
 								foreach( $resultado as $result){
 
 									echo '<tr>
 									<td>';
-									echo $result['cod_hospital'];
+									echo $result['cod_liga'];
 									echo '</td><td>';
 									echo $result['nombre'];
 									echo '</td><td>';
-									echo $result['direccion'];
+									echo $result['year'];
 									echo '</td><td>';
-									echo $result['num_plazas'];
+									echo $result['descripcion'];
 									echo '</td>';
 									echo '</tr>';
 								   }
