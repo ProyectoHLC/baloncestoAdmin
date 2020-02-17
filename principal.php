@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+
   <?php
 	require 'Medoo.php';
 	use Medoo\Medoo;
@@ -20,7 +21,8 @@
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
-    <link href="css/styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>" />
+	<script src="/js/functions.js?v=<?php echo time(); ?>"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

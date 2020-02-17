@@ -9,7 +9,8 @@
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
-    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>" />
+	<script src="/js/functions.js?v=<?php echo time(); ?>"></script>
 
     <link href="css/stats.css" rel="stylesheet">
 
