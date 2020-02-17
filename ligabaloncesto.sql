@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-02-2020 a las 20:22:16
+-- Tiempo de generación: 17-02-2020 a las 14:06:40
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -34,7 +34,7 @@ CREATE TABLE `equipos` (
   `nombre` varchar(45) NOT NULL,
   `ciudad` varchar(45) NOT NULL,
   `num_social` int(11) NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -42,8 +42,8 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`cod_equipo`, `cod_liga`, `nombre`, `ciudad`, `num_social`, `fecha`) VALUES
-(1, 1, 'Equipo de prueba 1', 'Madrid', 12345, '2020-02-05'),
-(2, 1, 'Equipo de prueba 2', 'Cádiz', 54321, '2019-09-18');
+(1, 1, 'Equipo de prueba 1', 'Madrid', 12345, 2020),
+(2, 1, 'Equipo de prueba 2', 'Cádiz', 54321, 2019);
 
 -- --------------------------------------------------------
 
@@ -54,7 +54,7 @@ INSERT INTO `equipos` (`cod_equipo`, `cod_liga`, `nombre`, `ciudad`, `num_social
 CREATE TABLE `liga` (
   `cod_liga` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `year` date NOT NULL,
+  `year` year(4) NOT NULL,
   `descripcion` varchar(140) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -63,7 +63,7 @@ CREATE TABLE `liga` (
 --
 
 INSERT INTO `liga` (`cod_liga`, `nombre`, `year`, `descripcion`) VALUES
-(1, 'Liga de Baloncesto', '2020-02-11', 'Liga de baloncesto de prueba para el proyecto final de HLC.');
+(1, 'Liga de Baloncesto', 2020, 'Liga de baloncesto de prueba para el proyecto final de HLC.');
 
 -- --------------------------------------------------------
 
