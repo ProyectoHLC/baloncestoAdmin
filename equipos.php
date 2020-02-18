@@ -2,6 +2,7 @@
 <html>
   <head>
   <?php
+    include 'functions.php';
 	require 'Medoo.php';
 	use Medoo\Medoo;
 
@@ -117,23 +118,29 @@
 		  				<div class="panel-body">
 								<table>
 								<tr> 
-								<th>cod_hospital</th>
+								<th>cod_equipo</th>
+								<th>cod_liga</th>
 								<th>nombre</th>
-								<th>direccion</th>
-								<th>plazas</th>
+								<th>ciudad</th>
+								<th>num_social</th>
+								<th>fecha</th>
 								</tr>
 								<tr> ';
 								foreach( $resultado as $result){
 
 									echo '<tr>
 									<td>';
-									echo $result['cod_hospital'];
+									echo $result['cod_equipo'];
 									echo '</td><td>';
-									echo $result['nombre'];
-									echo '</td><td>';
-									echo $result['direccion'];
-									echo '</td><td>';
-									echo $result['num_plazas'];
+									echo $result['cod_liga'];
+                                    echo '</td><td>';
+                                    echo $result['nombre'];
+                                    echo '</td><td>';
+                                    echo $result['ciudad'];
+                                    echo '</td><td>';
+                                    echo $result['num_social'];
+                                    echo '</td><td>';
+                                    echo $result['fecha'];
 									echo '</td>';
 									echo '</tr>';
 								   }
