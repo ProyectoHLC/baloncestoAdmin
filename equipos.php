@@ -3,18 +3,10 @@
   <head>
   <?php
     include 'functions.php';
-	require 'Medoo.php';
-	use Medoo\Medoo;
 
 	//Establecemos la conexión con la base de datos.
 	//Crea una instancia de la clase Medoo. (Se crea un objeto)
-	$database = new Medoo([
-		'database_type' => 'mysql',
-		'database_name' => 'baloncesto',
-		'server' => 'localhost',
-		'username' => 'root',
-		'password' => ''
-	]);
+
 	?>
   <title>Liga Baloncesto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -162,7 +154,7 @@
          <div class="container">
          
             <div class="copy text-center">
-               Copyright 2020 <a href='#'>Website</a>
+               Copyright 2020
             </div>
             
          </div>
