@@ -120,7 +120,6 @@ if (isset($_POST['actualizar'])){
         if ($actualizacion == 0) {
             var_dump($database->error());
         } else {
-            echo "<h2>Liga actualizada correctamente</h2>";
             header('Location: principal.php');
         }
     }
