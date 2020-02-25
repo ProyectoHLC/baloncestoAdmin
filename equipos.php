@@ -61,8 +61,8 @@
 		  	<div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li class="current"><a href="principal.php"><i class="glyphicon glyphicon-home"></i> Datos Liga</a></li>
-                    <li><a href="equipos.php"><i class="glyphicon glyphicon-calendar"></i> Equipos</a></li>
+                    <li><a href="principal.php"><i class="glyphicon glyphicon-home"></i> Datos Liga</a></li>
+                    <li class="current"><a href="equipos.php"><i class="glyphicon glyphicon-calendar"></i> Equipos</a></li>
                     <li><a href="resultados.php"><i class="glyphicon glyphicon-stats"></i> Resultados</a></li>
                 </ul>
              </div>

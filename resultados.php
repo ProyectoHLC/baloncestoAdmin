@@ -77,11 +77,11 @@
 							  <div class="panel-body">
 							  <h1>No hay resultados</h1>
 							  <form action="resultados.php" method="post">
-								<p>Equipo 1: <input type="text" name="equipo1" /></p>
-								<p>Equipo 2: <input type="text" name="equipo2" /></p>
-								<p>Resultado 1: <input type="text" name="result1" /></p>
-								<p>Resultado 2: <input type="text" name="result2" /></p>
-								<p>Fecha: <input type="text" name="fecha" /></p>
+								<p>Equipo 1: <input type="text" required name="equipo1" /></p>
+								<p>Equipo 2: <input type="text" required name="equipo2" /></p>
+								<p>Resultado 1: <input type="text" required name="result1" /></p>
+								<p>Resultado 2: <input type="text" required name="result2" /></p>
+								<p>Fecha: <input type="text" name="fecha" required /></p>
 								<p><input type="submit" name="add" value="Añadir" /></p>
 							   </form>';
 							   if (isset($_POST['add'])){
@@ -111,10 +111,7 @@
 								echo '
 								<div class="panel-heading">
 							<div class="panel-title">Resultados</div>
-							
-							<div class="panel-options">
-								<a href="editLiga.php" data-rel="collapse"><i class="glyphicon glyphicon-edit"></i></a>
-							</div>
+		
 						</div>
 		  				<div class="panel-body">
 								<table>
@@ -124,21 +121,28 @@
 								<th>Resultado 1</th>
 								<th>Resultado 2</th>
 								<th>Fecha</th>
+								<th>Editar</th>
 								</tr>
 								<tr> ';
 								foreach( $resultado as $result){
+									$equipo1 = $result["cod_equipo1"];
+									$equipo2 = $result["cod_equipo2"];
 
+									$nombreEquipo1 = $database->select("equipos", "nombre", ["cod_equipo" => $equipo1]);
+									$nombreEquipo2 = $database->select("equipos", "nombre", ["cod_equipo" => $equipo2]);
 									echo '<tr>
 									<td>';
-									echo $result['cod_equipo1'];
+									echo $nombreEquipo1[0];
 									echo '</td><td>';
-									echo $result['cod_equipo2'];
+									echo $nombreEquipo2[0];
 									echo '</td><td>';
 									echo $result['result_equipo1'];
 									echo '</td><td>';
 									echo $result['result_equipo2'];
 									echo '</td><td>';
 									echo $result['fecha'];
+									echo '</td><td>';
+									echo "<a href=editResultados.php?idResult=".$result["id_result"] ."><i class='glyphicon glyphicon-edit'></i></a>";
 									echo '</td>';
 									echo '</tr>';
 								   }
