@@ -89,7 +89,7 @@
 							  }else{
 								echo '
 								<div class="panel-heading">
-							<div class="panel-title">Datos Liga</div>
+							<div class="panel-title">Datos Equipos</div>
 							
 							<div class="panel-options">
 								<a href="editLiga.php" data-rel="collapse"><i class="glyphicon glyphicon-edit"></i></a>
@@ -98,12 +98,12 @@
 		  				<div class="panel-body">
 								<table>
 								<tr> 
-								<th>cod_equipo</th>
-								<th>cod_liga</th>
-								<th>nombre</th>
-								<th>ciudad</th>
+								<th>Equipo</th>
+								<th>Nombre</th>
+								<th>Ciudad</th>
 								<th>num_social</th>
-								<th>fecha</th>
+								<th>Fecha</th>
+								<th>Editar / Borrar</th>
 								</tr>
 								<tr> ';
 								foreach( $resultado as $result){
@@ -112,8 +112,6 @@
 									<td>';
 									echo $result['cod_equipo'];
 									echo '</td><td>';
-									echo $result['cod_liga'];
-                                    echo '</td><td>';
                                     echo $result['nombre'];
                                     echo '</td><td>';
                                     echo $result['ciudad'];

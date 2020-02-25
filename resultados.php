@@ -111,6 +111,9 @@
 								echo '
 								<div class="panel-heading">
 							<div class="panel-title">Resultados</div>
+							<div class="panel-options">
+								<a href="addResultados.php" data-rel="collapse"><i class="glyphicon glyphicon-plus"></i></a>
+							</div>
 		
 						</div>
 		  				<div class="panel-body">
@@ -121,9 +124,25 @@
 								<th>Resultado 1</th>
 								<th>Resultado 2</th>
 								<th>Fecha</th>
-								<th>Editar</th>
+								<th>Editar / Borrar</th>								
 								</tr>
 								<tr> ';
+								if(isset($_GET['deleteId'])) {
+									$deleteId = $_GET['deleteId'];
+									$actualizacion = $database->delete("resultados",array("id_result" => $deleteId));
+									$result = $actualizacion->fetch();
+									// Comprobando errores
+									if ($result) {
+										var_dump($database->error());
+									} else {
+										echo "<script>
+                						alert('El resultado seleccionado ha sido borrado correctamente .');
+                						window.location= 'resultados.php'
+										</script>";
+
+									}
+
+								  }
 								foreach( $resultado as $result){
 									$equipo1 = $result["cod_equipo1"];
 									$equipo2 = $result["cod_equipo2"];
@@ -143,15 +162,17 @@
 									echo $result['fecha'];
 									echo '</td><td>';
 									echo "<a href=editResultados.php?idResult=".$result["id_result"] ."><i class='glyphicon glyphicon-edit'></i></a>";
+									echo "  /  ";
+									echo "<a href=resultados.php?deleteId=".$result["id_result"] ."><i class='glyphicon glyphicon-remove'></i></a>";
+	
 									echo '</td>';
 									echo '</tr>';
 								   }
 								   echo '</table>';
 								   
-					}
+								}
 
-						  ?>
-							
+					?>
 		  				</div>
 		  			</div>
 		  		</div>
@@ -169,11 +190,21 @@
             
          </div>
       </footer>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
   </body>
+  <script>
+function confirm_delete(id){
+    if(confirm("Are you sure you want to delete this..?") === true){
+		call delete(id);
+		
+        return true;
+    }else{
+        return false;
+   }
+ }
+</script>
 </html>

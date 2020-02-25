@@ -85,56 +85,46 @@
 		  		<div class="col-md-6">
 		  			<div class="content-box-large">
                     <div class="panel-heading">
-                            <div class="panel-title">Editar Resultado</div>
+                            <div class="panel-title">Añadir resultado</div>
 							    </div>
 							    <div class="panel-body">
                   <?php
-                  if(isset($_GET['idResult'])) {
-                    $idResult = $_GET['idResult'];
-                  }
-                  $resultado = $database->select("resultados", "*", ["id_result" => $idResult]);
-                    
-                    $equipo1 = $resultado[0]["cod_equipo1"];
-                    $equipo2 = $resultado[0]["cod_equipo2"];
-                
-                    $nombreEquipo1 = $database->select("equipos", "nombre", ["cod_equipo" => $equipo1]);
-                    $nombreEquipo2 = $database->select("equipos", "nombre", ["cod_equipo" => $equipo2]);
-                
+                 
+                  
             
-                  foreach( $resultado as $result){
-                  echo '<form action="editResultados.php" method="post">
+                  
+                  echo '<form action="addResultados.php" method="post">
                     <label>
-                        <input name="equipo1" value="'.$nombreEquipo1[0].'" readonly type="text" />
+                        Cod Equipo 1 <input name="equipo1" required   type="text" />
                     </label><br>
                     <label>
-                        <input name="equipo2" value="'.$nombreEquipo2[0].'" readonly type="text" />
+                    Cod Equipo 2 <input name="equipo2" required type="text" />
                     </label><br>
                     <label>
-                        <input name="resultEquipo1" value="'.$result['result_equipo1'].'" type="text"/>
+                    Resultado 1 <input name="resultEquipo1" required type="text"/>
                     </label><br>
                     <label>
-                        <input name="resultEquipo2" value="'.$result['result_equipo2'].'" type="text"/>
+                    Resultado 1 <input name="resultEquipo2"  required type="text"/>
                     </label><br>
                     <label>
-                        <input name="fecha" value="'.$result['fecha'].'" type="text"/>
+                      Fecha <input name="fecha" required type="text"/>
                     </label><br>
-                    <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
+                    <input name="add" class="boton" type="submit" value="Añadir"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
                   </form>';
-                  }
+                  
                   ?>
 <?php
 //Capturamos los nuevos datos introducidos por el usuario
-if (isset($_POST['actualizar'])){
-    if (isset($_POST['resultEquipo1']) && isset($_POST['resultEquipo2']) && isset($_POST['fecha'])) {
-       // $equipo1 = $_POST['equipo1'];
-        //$equipo2 = $_POST['equipo2'];
+if (isset($_POST['add'])){
+        $equipo1 = $_POST['equipo1'];
+        $equipo2 = $_POST['equipo2'];
         $result_equipo1 = $_POST['resultEquipo1'];
         $result_equipo2 = $_POST['resultEquipo2'];
         $fecha = $_POST['fecha'];
 
 
-        $actualizacion = $database->update("resultados", array("result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha), array("id_result" => $idResult));
+        $actualizacion = $database->insert("resultados", array("cod_equipo1" => $equipo1,"cod_equipo2" => $equipo2,"result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha));
         $result = $actualizacion->fetch();
         // Comprobando errores
         if ($result) {
@@ -142,7 +132,6 @@ if (isset($_POST['actualizar'])){
         } else {
             header('Location: resultados.php');
         }
-    }
 }
 
 						  ?>
