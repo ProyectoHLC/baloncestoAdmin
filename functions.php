@@ -31,7 +31,7 @@ function headerProfileMenu()
 	                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">$username <b class=\"caret\"></b></a>
 	                        <ul class=\"dropdown-menu animated fadeInUp\">
 	                          <!-- No es necesario por ahora <li><a href=\"profile.html\">Profile</a></li>-->
-	                          <li><a href=\"logout.php\">Logout</a></li>
+	                          <li><a href=\"logout.php\">Cerrar sesión</a></li>
 	                        </ul>
 	                      </li>
 	                    </ul>
