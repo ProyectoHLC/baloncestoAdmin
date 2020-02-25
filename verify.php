@@ -42,6 +42,7 @@
                     $password = $_POST['password'];
 
                     if (login($username, $password, $resultado)) {
+                        $_SESSION['username'] = $username;
                         header("Location: principal.php");
                     } else {
                         echo "<h2>Contraseña incorrecta</h2>";
