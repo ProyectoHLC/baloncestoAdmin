@@ -116,8 +116,9 @@ if (isset($_POST['actualizar'])){
         $descripcion = $_POST['descripcion'];
 
         $actualizacion = $database->update("liga", ["nombre" => $nombre,"year" => $anio,"descripcion" => $descripcion]);
+        $result = $actualizacion->fetch();
         // Comprobando errores
-        if ($actualizacion == 0) {
+        if ($result) {
             var_dump($database->error());
         } else {
             header('Location: principal.php');
