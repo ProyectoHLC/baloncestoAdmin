@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ES">
 <head>
     <?php
     include 'functions.php';
@@ -10,7 +10,6 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>"/>
-    <script src="/js/functions.js?v=<?php echo time(); ?>"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,27 +32,13 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="input-group form">
-                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="navbar navbar-inverse" role="banner">
-                    <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b
-                                            class="caret"></b></a>
-                                <ul class="dropdown-menu animated fadeInUp">
-                                    <li><a href="profile.html">Profile</a></li>
-                                    <li><a href="index.html">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+            <?php
+            headerProfileMenu();
+            ?>
         </div>
     </div>
 </div>
@@ -66,7 +51,8 @@
                     <!-- Main menu -->
                     <li><a href="principal.php"><i class="glyphicon glyphicon-home"></i> Datos Liga</a></li>
                     <li><a href="equipos.php"><i class="glyphicon glyphicon-calendar"></i> Equipos</a></li>
-                    <li><a href="resultados.php"><i class="glyphicon glyphicon-stats"></i> Resultados</a></li>
+                    <li class="current"><a href="resultados.php"><i class="glyphicon glyphicon-stats"></i>
+                            Resultados</a></li>
                 </ul>
             </div>
         </div>
@@ -132,15 +118,9 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-
-            <div class="copy text-center">
-                Copyright 2020 <a href='#'>Website</a>
-            </div>
-
-        </div>
-    </footer>
+    <?php
+    footer();
+    ?>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>

@@ -47,7 +47,7 @@
                     } else {
                         echo "<h2>Contraseña incorrecta</h2>";
                         echo "<h6><a href='index.html'>Volver</a></h6>";
-                    };
+                    }
 
                     function login($username, $password, $resultado)
                     {

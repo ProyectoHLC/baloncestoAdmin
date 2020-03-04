@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  <?php
+<html lang="es">
+<head>
+    <?php
     include 'functions.php';
-
-	//Establecemos la conexión con la base de datos.
-	//Crea una instancia de la clase Medoo. (Se crea un objeto)
-
-	?>
-  <title>Liga Baloncesto</title>
+    ?>
+    <title>Liga Baloncesto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery UI -->
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
@@ -17,66 +13,65 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen">
     <!-- styles -->
-    <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>" />
-	<script src="/js/functions.js?v=<?php echo time(); ?>"></script>
+    <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>"/>
 
     <link href="css/calendar.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-  	<div class="header">
-	     <div class="container">
-	        <div class="row">
-	           <div class="col-md-5">
-	              <!-- Logo -->
-	              <div class="logo">
-	                 <h1><a href="principal.php">Liga Baloncesto</a></h1>
-	              </div>
-	           </div>
-	           <div class="col-md-5">
-	              <div class="row">
-	                <div class="col-lg-12">
-	                  <div class="input-group form">
-	                       </span>
-	                  </div>
-	                </div>
-	              </div>
-	           </div>
-                <?php
-                headerProfileMenu();
-                ?>
-	        </div>
-	     </div>
-	</div>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <!-- Logo -->
+                <div class="logo">
+                    <h1><a href="principal.php">Liga Baloncesto</a></h1>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="input-group form">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+            headerProfileMenu();
+            ?>
+        </div>
+    </div>
+</div>
 
-    <div class="page-content">
-    	<div class="row">
-		  <div class="col-md-2">
-		  	<div class="sidebar content-box" style="display: block;">
+<div class="page-content">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
                     <!-- Main menu -->
                     <li><a href="principal.php"><i class="glyphicon glyphicon-home"></i> Datos Liga</a></li>
-                    <li class="current"><a href="equipos.php"><i class="glyphicon glyphicon-calendar"></i> Equipos</a></li>
+                    <li class="current"><a href="equipos.php"><i class="glyphicon glyphicon-calendar"></i> Equipos</a>
+                    </li>
                     <li><a href="resultados.php"><i class="glyphicon glyphicon-stats"></i> Resultados</a></li>
                 </ul>
-             </div>
-		  </div>
-		  <div class="col-md-10">
-		  	<div class="row">
-		  		<div class="col-md-6">
-		  			<div class="content-box-large">
-					
-						  <?php
-							  $resultado = $database->select("equipos","*",true);
-							  $count = $database->count("equipos","*",true);
-							  if(($count)==0){
-								echo '<div class="panel-heading">
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="content-box-large">
+
+                        <?php
+                        $resultado = $database->select("equipos", "*", true);
+                        $count = $database->count("equipos", "*", true);
+                        if (($count) == 0) {
+                            echo '<div class="panel-heading">
 								<div class="panel-title">Datos Equipos</div>
 							</div>
 							  <div class="panel-body">
@@ -86,8 +81,8 @@
 								<p>Descripcion: <input type="password" name="description" /></p>
 								<p><input type="submit" value="Guardar" /></p>
 							   </form>';
-							  }else{
-								echo '
+                        } else {
+                            echo '
 								<div class="panel-heading">
 							<div class="panel-title">Datos Equipos</div>
 							
@@ -106,71 +101,65 @@
 								<th>Editar / Borrar</th>
 								</tr>
 								<tr> ';
-                                  if(isset($_GET['deleteId'])) {
-                                      $deleteId = $_GET['deleteId'];
-                                      $actualizacion = $database->delete("equipos",array("cod_equipo" => $deleteId));
-                                      $result = $actualizacion->fetch();
-                                      // Comprobando errores
-                                      if ($result) {
-                                          var_dump($database->error());
-                                      } else {
-                                          echo "<script>
+                            if (isset($_GET['deleteId'])) {
+                                $deleteId = $_GET['deleteId'];
+                                $actualizacion = $database->delete("equipos", array("cod_equipo" => $deleteId));
+                                $result = $actualizacion->fetch();
+                                // Comprobando errores
+                                if ($result) {
+                                    var_dump($database->error());
+                                } else {
+                                    echo "<script>
                 						alert('El resultado seleccionado ha sido borrado correctamente .');
                 						window.location= 'equipos.php'
 										</script>";
 
-                                      }
+                                }
 
-                                  }
-								foreach( $resultado as $result){
+                            }
+                            foreach ($resultado as $result) {
 
-									echo '<tr>
+                                echo '<tr>
 									<td>';
-									echo $result['cod_equipo'];
-									echo '</td><td>';
-                                    echo $result['nombre'];
-                                    echo '</td><td>';
-                                    echo $result['ciudad'];
-                                    echo '</td><td>';
-                                    echo $result['num_social'];
-                                    echo '</td><td>';
-                                    echo $result['fecha'];
-									echo '</td><td>';
-									echo "<a href=editEquipo.php?codEquipo=".$result["cod_equipo"] ."><i class='glyphicon glyphicon-edit'></i></a>";
-									echo "  /  ";
-									echo "<a href=equipos.php?deleteId=".$result["cod_equipo"] ."><i class='glyphicon glyphicon-remove'></i></a>";
+                                echo $result['cod_equipo'];
+                                echo '</td><td>';
+                                echo $result['nombre'];
+                                echo '</td><td>';
+                                echo $result['ciudad'];
+                                echo '</td><td>';
+                                echo $result['num_social'];
+                                echo '</td><td>';
+                                echo $result['fecha'];
+                                echo '</td><td>';
+                                echo "<a href=editEquipo.php?codEquipo=" . $result["cod_equipo"] . "><i class='glyphicon glyphicon-edit'></i></a>";
+                                echo "  /  ";
+                                echo "<a href=equipos.php?deleteId=" . $result["cod_equipo"] . "><i class='glyphicon glyphicon-remove'></i></a>";
 
-									echo '</td>';
-									echo '</tr>';
-								   }
-								   echo '</table>';
-								   
-					}
+                                echo '</td>';
+                                echo '</tr>';
+                            }
+                            echo '</table>';
 
-						  ?>
-							
-		  				</div>
-		  			</div>
-		  		</div>
+                        }
 
-		  	</div>
-		</div>
-    </div>
+                        ?>
 
-    <footer>
-         <div class="container">
-         
-            <div class="copy text-center">
-               Copyright 2020
+                    </div>
+                </div>
             </div>
-            
-         </div>
-      </footer>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-  </body>
+        </div>
+    </div>
+</div>
+
+<?php
+footer();
+?>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/custom.js"></script>
+</body>
 </html>
