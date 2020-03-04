@@ -92,7 +92,7 @@
 							<div class="panel-title">Datos Equipos</div>
 							
 							<div class="panel-options">
-								<a href="editLiga.php" data-rel="collapse"><i class="glyphicon glyphicon-edit"></i></a>
+								<a href="addEquipo.php" data-rel="collapse"><i class="glyphicon glyphicon-plus"></i></a>
 							</div>
 						</div>
 		  				<div class="panel-body">
@@ -106,6 +106,22 @@
 								<th>Editar / Borrar</th>
 								</tr>
 								<tr> ';
+                                  if(isset($_GET['deleteId'])) {
+                                      $deleteId = $_GET['deleteId'];
+                                      $actualizacion = $database->delete("equipos",array("cod_equipo" => $deleteId));
+                                      $result = $actualizacion->fetch();
+                                      // Comprobando errores
+                                      if ($result) {
+                                          var_dump($database->error());
+                                      } else {
+                                          echo "<script>
+                						alert('El resultado seleccionado ha sido borrado correctamente .');
+                						window.location= 'equipos.php'
+										</script>";
+
+                                      }
+
+                                  }
 								foreach( $resultado as $result){
 
 									echo '<tr>
@@ -119,6 +135,11 @@
                                     echo $result['num_social'];
                                     echo '</td><td>';
                                     echo $result['fecha'];
+									echo '</td><td>';
+									echo "<a href=editEquipo.php?codEquipo=".$result["cod_equipo"] ."><i class='glyphicon glyphicon-edit'></i></a>";
+									echo "  /  ";
+									echo "<a href=equipos.php?deleteId=".$result["cod_equipo"] ."><i class='glyphicon glyphicon-remove'></i></a>";
+
 									echo '</td>';
 									echo '</tr>';
 								   }

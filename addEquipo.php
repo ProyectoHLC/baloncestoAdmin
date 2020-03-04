@@ -44,7 +44,7 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b
-                                            class="caret"></b></a>
+                                        class="caret"></b></a>
                                 <ul class="dropdown-menu animated fadeInUp">
                                     <li><a href="profile.html">Profile</a></li>
                                     <li><a href="index.html">Logout</a></li>
@@ -75,63 +75,50 @@
                 <div class="col-md-6">
                     <div class="content-box-large">
                         <div class="panel-heading">
-                            <div class="panel-title">Editar Resultado</div>
+                            <div class="panel-title">Añadir equipo</div>
                         </div>
                         <div class="panel-body">
                             <?php
-                            if (isset($_GET['idResult'])) {
-                                $idResult = $_GET['idResult'];
-                            }
-                            $resultado = $database->select("resultados", "*", ["id_result" => $idResult]);
-
-                            $equipo1 = $resultado[0]["cod_equipo1"];
-                            $equipo2 = $resultado[0]["cod_equipo2"];
-
-                            $nombreEquipo1 = $database->select("equipos", "nombre", ["cod_equipo" => $equipo1]);
-                            $nombreEquipo2 = $database->select("equipos", "nombre", ["cod_equipo" => $equipo2]);
 
 
-                            foreach ($resultado as $result) {
-                                echo '<form action="editResultados.php" method="post">
+                            echo '<form action="addEquipo.php" method="post">
                     <label>
-                        <input name="equipo1" value="' . $nombreEquipo1[0] . '" readonly type="text" />
+                        Equipo <input name="idEquipo" required   type="text" />
                     </label><br>
                     <label>
-                        <input name="equipo2" value="' . $nombreEquipo2[0] . '" readonly type="text" />
+                    Nombre <input name="nombre" required type="text" />
                     </label><br>
                     <label>
-                        <input name="resultEquipo1" value="' . $result['result_equipo1'] . '" type="text"/>
+                    Ciudad <input name="ciudad" required type="text"/>
                     </label><br>
                     <label>
-                        <input name="resultEquipo2" value="' . $result['result_equipo2'] . '" type="text"/>
+                    Número social <input name="numSocial"  required type="text"/>
                     </label><br>
                     <label>
-                        <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
+                      Fecha <input name="fecha" required type="text"/>
                     </label><br>
-                    <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
-                    <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
+                    <input name="add" class="boton" type="submit" value="Añadir"/>
+                    <h3><a href="equipos.php">Volver a datos de equipos</a></h3>
                   </form>';
-                            }
+
                             ?>
                             <?php
                             //Capturamos los nuevos datos introducidos por el usuario
-                            if (isset($_POST['actualizar'])) {
-                                if (isset($_POST['resultEquipo1']) && isset($_POST['resultEquipo2']) && isset($_POST['fecha'])) {
-                                    // $equipo1 = $_POST['equipo1'];
-                                    //$equipo2 = $_POST['equipo2'];
-                                    $result_equipo1 = $_POST['resultEquipo1'];
-                                    $result_equipo2 = $_POST['resultEquipo2'];
-                                    $fecha = $_POST['fecha'];
+                            if (isset($_POST['add'])) {
+                                $idEquipo = $_POST['idEquipo'];
+                                $nombre = $_POST['nombre'];
+                                $ciudad = $_POST['ciudad'];
+                                $numSocial = $_POST['numSocial'];
+                                $fecha = $_POST['fecha'];
 
 
-                                    $actualizacion = $database->update("resultados", array("result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha), array("id_result" => $idResult));
-                                    $result = $actualizacion->fetch();
-                                    // Comprobando errores
-                                    if ($result) {
-                                        var_dump($database->error());
-                                    } else {
-                                        header('Location: resultados.php');
-                                    }
+                                $actualizacion = $database->insert("equipos", array("cod_equipo" => $idEquipo, "cod_liga" => 1, "nombre" => $nombre, "ciudad" => $ciudad, "num_social" => $numSocial, "fecha" => $fecha));
+                                $result = $actualizacion->fetch();
+                                // Comprobando errores
+                                if ($result) {
+                                    var_dump($database->error());
+                                } else {
+                                    header('Location: equipos.php');
                                 }
                             }
 
