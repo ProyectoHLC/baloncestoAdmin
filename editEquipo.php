@@ -72,6 +72,9 @@
 
                             foreach ($resultado as $result) {
                                 echo '<form action="editEquipo.php" method="post">
+                                <label>
+                        <input name="id" value="' . $codEquipo . '" type="hidden" />
+                    </label><br>
                     <label>
                         <input name="cod_equipo" value="' . $result['cod_equipo'] . '" readonly type="text" />
                     </label><br>
@@ -97,13 +100,13 @@
                             if (isset($_POST['actualizar'])) {
 
                                 if (isset($_POST['cod_equipo']) && isset($_POST['nombre']) && isset($_POST['ciudad']) && isset($_POST['num_social']) && isset($_POST['fecha'])) {
-                                    $idEquipo = $_POST['cod_equipo'];
+                                    $id = $_POST['id'];
                                     $nombre = $_POST['nombre'];
                                     $ciudad = $_POST['ciudad'];
                                     $numSocial = $_POST['num_social'];
                                     $fecha = $_POST['fecha'];
 
-                                    $actualizacion = $database->update("equipos", array("cod_equipo" => $idEquipo, "cod_liga" => 1, "nombre" => $nombre, "ciudad" => $ciudad, "num_social" => $numSocial, "fecha" => $fecha));
+                                    $actualizacion = $database->update("equipos", array("nombre" => $nombre, "ciudad" => $ciudad, "num_social" => $numSocial, "fecha" => $fecha), array("cod_equipo" => $id));
                                     $result = $actualizacion->fetch();
                                     // Comprobando errores
                                     if ($result) {

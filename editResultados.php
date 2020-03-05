@@ -65,10 +65,12 @@
                         </div>
                         <div class="panel-body">
                             <?php
+                            $idResult = -1;
                             if (isset($_GET['idResult'])) {
                                 $idResult = $_GET['idResult'];
                             }
                             $resultado = $database->select("resultados", "*", ["id_result" => $idResult]);
+
 
                             $equipo1 = $resultado[0]["cod_equipo1"];
                             $equipo2 = $resultado[0]["cod_equipo2"];
@@ -78,7 +80,10 @@
 
 
                             foreach ($resultado as $result) {
-                                echo '<form action="editResultados.php" method="post">
+                                echo '<form action="editResultados.php" method="POST">
+                                <label>
+                        <input name="id" value="' . $idResult . '" type="hidden" />
+                    </label><br>
                     <label>
                         <input name="equipo1" value="' . $nombreEquipo1[0] . '" readonly type="text" />
                     </label><br>
@@ -94,23 +99,24 @@
                     <label>
                         <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
                     </label><br>
-                    <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
+                    <input name="actualizar2" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
                   </form>';
                             }
                             ?>
                             <?php
                             //Capturamos los nuevos datos introducidos por el usuario
-                            if (isset($_POST['actualizar'])) {
+                            if (isset($_POST['actualizar2'])) {
                                 if (isset($_POST['resultEquipo1']) && isset($_POST['resultEquipo2']) && isset($_POST['fecha'])) {
                                     // $equipo1 = $_POST['equipo1'];
                                     //$equipo2 = $_POST['equipo2'];
+                                    $id = $_POST['id'];
                                     $result_equipo1 = $_POST['resultEquipo1'];
                                     $result_equipo2 = $_POST['resultEquipo2'];
                                     $fecha = $_POST['fecha'];
 
 
-                                    $actualizacion = $database->update("resultados", array("result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha), array("id_result" => $idResult));
+                                    $actualizacion = $database->update("resultados", array("result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha), array("id_result" => $id));
                                     $result = $actualizacion->fetch();
                                     // Comprobando errores
                                     if ($result) {
