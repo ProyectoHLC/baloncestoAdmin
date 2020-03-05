@@ -20,6 +20,8 @@ if ($_SESSION['username'] == null) {
     header("Location: index.html", true);
 }
 
+// Genera un menú dropdown con el nombre de usuario y la opción de cerrar sesión.
+
 function headerProfileMenu()
 {
     $username = $_SESSION['username'];
@@ -40,13 +42,24 @@ function headerProfileMenu()
 	           </div>";
 }
 
+function selectEquipo($label, $id, $equipos){
+   echo "<label>$label<select id='$id' name='$id'>";
+    foreach ($equipos as $equipo){
+        echo "$equipo[cod_equipo]";
+        echo "<option value='$equipo[cod_equipo]'>$equipo[nombre]</option>";
+    }
+   echo "</select></label>";
+}
+
+// Genera el footer
+
 function footer()
 {
     echo "<footer>
         <div class=\"container\">
 
             <div class=\"copy text-center\">
-                Copyright 2020 <a href='#'>Website</a>
+                Copyright 2020
             </div>
 
         </div>

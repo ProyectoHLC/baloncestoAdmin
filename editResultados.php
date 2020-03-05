@@ -68,8 +68,10 @@
                             $idResult = -1;
                             if (isset($_GET['idResult'])) {
                                 $idResult = $_GET['idResult'];
+                            } else {
+                                echo "Error";
                             }
-                            $resultado = $database->select("resultados", "*", ["id_result" => $idResult]);
+                            $resultado = $database->select("resultados", "*", ["id_result" => 1]);
 
 
                             $equipo1 = $resultado[0]["cod_equipo1"];

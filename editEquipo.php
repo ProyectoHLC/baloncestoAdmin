@@ -69,6 +69,7 @@
                                 $codEquipo = $_GET['codEquipo'];
                             }
                             $resultado = $database->select("equipos", "*", ["cod_equipo" => $codEquipo]);
+                            $liga = $database->select("liga", "*", null);
 
                             foreach ($resultado as $result) {
                                 echo '<form action="editEquipo.php" method="post">
@@ -90,6 +91,7 @@
                     <label>
                         <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
                     </label><br>
+                    <input type="hidden" name="idEquipo"/>
                     <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="equipos.php">Volver a datos de equipos</a></h3>
                   </form>';
@@ -98,7 +100,6 @@
                             <?php
                             //Capturamos los nuevos datos introducidos por el usuario
                             if (isset($_POST['actualizar'])) {
-
                                 if (isset($_POST['cod_equipo']) && isset($_POST['nombre']) && isset($_POST['ciudad']) && isset($_POST['num_social']) && isset($_POST['fecha'])) {
                                     $id = $_POST['id'];
                                     $nombre = $_POST['nombre'];
@@ -107,6 +108,7 @@
                                     $fecha = $_POST['fecha'];
 
                                     $actualizacion = $database->update("equipos", array("nombre" => $nombre, "ciudad" => $ciudad, "num_social" => $numSocial, "fecha" => $fecha), array("cod_equipo" => $id));
+
                                     $result = $actualizacion->fetch();
                                     // Comprobando errores
                                     if ($result) {

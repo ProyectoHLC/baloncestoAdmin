@@ -70,13 +70,12 @@ ob_start();
                             <?php
 
 
-                            echo '<form action="addResultados.php" method="post">
-                    <label>
-                        Cod Equipo 1 <input name="equipo1" required   type="text" />
-                    </label><br>
-                    <label>
-                    Cod Equipo 2 <input name="equipo2" required type="text" />
-                    </label><br>
+                            echo '<form action="addResultados.php" method="post">';
+                            $equipos = $database->select("equipos", "*", true);
+                            selectEquipo("Equipo 1", "equipo1", $equipos);
+                            echo '<br>';
+                            selectEquipo("Equipo 2", "equipo2", $equipos);
+                            echo '<br>
                     <label>
                     Resultado 1 <input name="resultEquipo1" required type="text"/>
                     </label><br>

@@ -46,7 +46,7 @@
 <div class="page-content">
     <div class="row">
         <div class="col-md-2">
-            <div class="sidebar content-box" style="display: block;">
+            <div class="sidebar content-box" style="adisplay: block;">
                 <ul class="nav">
                     <!-- Main menu -->
                     <li class="current"><a href="principal.php"><i class="glyphicon glyphicon-home"></i> Datos Liga</a>
@@ -69,12 +69,15 @@
                             foreach ($resultado as $result) {
                                 echo '<form action="editLiga.php" method="post">
                     <label>
+                    Nombre
                         <input name="nombre" value="' . $result['nombre'] . '" type="text" />
                     </label><br>
                     <label>
+                    Fecha
                         <input name="anio" value="' . $result['year'] . '" type="text" />
                     </label><br>
                     <label>
+                    Descripción
                         <input name="descripcion" value="' . $result['descripcion'] . '" type="text"/>
                     </label>
                     <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
