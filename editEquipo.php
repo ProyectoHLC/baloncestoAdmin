@@ -76,7 +76,7 @@
                         <input name="id" value="' . $codEquipo . '" type="hidden" />
                     </label><br>
                     <label>
-                        <input name="cod_equipo" value="' . $result['cod_equipo'] . '" readonly type="text" />
+                        COD EQUIPO<input name="cod_equipo" value="' . $result['cod_equipo'] . '" readonly type="text" />
                     </label><br>
                     <label>
                         <input name="nombre" value="' . $result['nombre'] . '" type="text" />

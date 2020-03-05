@@ -131,14 +131,18 @@
                                 $actualizacion = $database->delete("resultados", array("id_result" => $deleteId));
                                 $result = $actualizacion->fetch();
                                 // Comprobando errores
-                                if ($result) {
-                                    var_dump($database->error());
+                                $comprobar = $database->count("resultados","*", array("id_result" => $deleteId));
+                                // Comprobando errores
+                                if ($comprobar!=0) {
+                                    echo "<script>
+                                    alert('El resultado seleccionado no se ha podido eliminar .');
+                                    window.location= 'resultados.php'
+                                    </script>";
                                 } else {
                                     echo "<script>
-                						alert('El resultado seleccionado ha sido borrado correctamente .');
-                						window.location= 'resultados.php'
-										</script>";
-
+                                    alert('El resultado seleccionado ha sido eliminado correctamente .');
+                                    window.location= 'resultados.php'
+                                    </script>";
                                 }
 
                             }

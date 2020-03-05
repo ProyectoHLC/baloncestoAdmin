@@ -99,14 +99,14 @@
                     <label>
                         <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
                     </label><br>
-                    <input name="actualizar2" class="boton" type="submit" value="Actualizar"/>
+                    <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
                   </form>';
                             }
                             ?>
                             <?php
                             //Capturamos los nuevos datos introducidos por el usuario
-                            if (isset($_POST['actualizar2'])) {
+                            if (isset($_POST['actualizar'])) {
                                 if (isset($_POST['resultEquipo1']) && isset($_POST['resultEquipo2']) && isset($_POST['fecha'])) {
                                     // $equipo1 = $_POST['equipo1'];
                                     //$equipo2 = $_POST['equipo2'];
