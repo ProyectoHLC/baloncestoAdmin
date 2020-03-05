@@ -71,11 +71,20 @@
 							</div>
 							  <div class="panel-body">
 							  <form action="principal.php" method="post">
-								<p>Nombre: <input type="text" name="name" /></p>
-								<p>Año: <input type="password" name="year" /></p>
-								<p>Descripcion: <input type="password" name="description" /></p>
-								<p><input type="submit" value="Guardar" /></p>
-							   </form>';
+								<p>Nombre: <input type="text" required name="name" /></p>
+								<p>Año: <input type="text" required name="year" /></p>
+								<p>Descripcion: <input type="text" required name="description" /></p>
+								<p><input type="submit" name="add" value="Guardar" /></p>
+                               </form>';
+                               if (isset($_POST['add'])) {
+                                $year = $_POST['year'];
+                                $name = $_POST['name'];
+                                $description = $_POST['description'];
+
+
+                                $actualizacion = $database->insert("liga", array("cod_liga"=>1,"nombre" => $name, "year" => $year,"descripcion" => $description));
+                                $result = $actualizacion->fetch();
+                               }
                         } else {
                             echo '
 								<div class="panel-heading">
