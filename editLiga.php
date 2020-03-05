@@ -88,9 +88,9 @@
                             <?php
                             //Capturamos los nuevos datos introducidos por el usuario
                             if (isset($_POST['actualizar'])) {
-                                if (isset($_POST['nombre']) && isset($_POST['anio']) && isset($_POST['descripcion'])) {
+                                if (isset($_POST['nombre']) && isset($_POST['fecha']) && isset($_POST['descripcion'])) {
                                     $nombre = $_POST['nombre'];
-                                    $anio = $_POST['anio'];
+                                    $anio = $_POST['fecha'];
                                     $descripcion = $_POST['descripcion'];
 
                                     $actualizacion = $database->update("liga", ["nombre" => $nombre, "year" => $anio, "descripcion" => $descripcion]);
