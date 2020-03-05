@@ -78,19 +78,19 @@
                         <input name="id" value="' . $codEquipo . '" type="hidden" />
                     </label><br>
                     <label>
-                        COD EQUIPO<input name="cod_equipo" value="' . $result['cod_equipo'] . '" readonly type="text" />
+                        Código de equipo <input name="cod_equipo" value="' . $result['cod_equipo'] . '" readonly type="text" />
                     </label><br>
                     <label>
-                        <input name="nombre" value="' . $result['nombre'] . '" type="text" />
+                        Nombre del equipo <input name="nombre" value="' . $result['nombre'] . '" type="text" />
                     </label><br>
                     <label>
-                        <input name="ciudad" value="' . $result['ciudad'] . '" type="text"/>
+                        Ciudad <input name="ciudad" value="' . $result['ciudad'] . '" type="text"/>
                     </label><br>
                     <label>
-                        <input name="num_social" value="' . $result['num_social'] . '" type="text"/>
+                       Número social <input name="num_social" value="' . $result['num_social'] . '" type="text"/>
                     </label><br>
                     <label>
-                        <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
+                        Fecha <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
                     </label><br>
                     <input type="hidden" name="idEquipo"/>
                     <input name="actualizar" class="boton" type="submit" value="Actualizar"/>

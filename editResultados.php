@@ -87,24 +87,19 @@
                         <input name="id" value="' . $idResult . '" type="hidden" />
                     </label><br>
                     <label>
-                     Equipo 1
-                        <input name="equipo1" value="' . $nombreEquipo1[0] . '" readonly type="text" />
+                     Equipo 1 <input name="equipo1" value="' . $nombreEquipo1[0] . '" readonly type="text" />
                     </label><br>
                     <label>
-                    Equipo 2
-                        <input name="equipo2" value="' . $nombreEquipo2[0] . '" readonly type="text" />
+                    Equipo 2 <input name="equipo2" value="' . $nombreEquipo2[0] . '" readonly type="text" />
                     </label><br>
                     <label>
-                    Resultado 1
-                        <input name="resultEquipo1" value="' . $result['result_equipo1'] . '" type="text"/>
+                    Resultado 1 <input name="resultEquipo1" value="' . $result['result_equipo1'] . '" type="text"/>
                     </label><br>
                     <label>
-                    Resultado 2
-                        <input name="resultEquipo2" value="' . $result['result_equipo2'] . '" type="text"/>
+                    Resultado 2 <input name="resultEquipo2" value="' . $result['result_equipo2'] . '" type="text"/>
                     </label><br>
                     <label>
-                    Fecha
-                        <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
+                    Fecha <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
                     </label><br>
                     <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
