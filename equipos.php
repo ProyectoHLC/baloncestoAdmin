@@ -75,12 +75,23 @@
 								<div class="panel-title">Datos Equipos</div>
 							</div>
 							  <div class="panel-body">
-							  <form action="principal.php" method="post">
-								<p>Nombre: <input type="text" name="name" /></p>
-								<p>Año: <input type="password" name="year" /></p>
-								<p>Descripcion: <input type="password" name="description" /></p>
-								<p><input type="submit" value="Guardar" /></p>
-							   </form>';
+							  <form action="equipos.php" method="post">
+								<p>Nombre: <input type="text" required name="name" /></p>
+								<p>Ciudad: <input type="text" required name="ciudad" /></p>
+                                <p>Num Social: <input type="text" required name="numsocial" /></p>
+                                <p>Fecha: <input type="text" required name="fecha" /></p>
+								<p><input type="submit" name="add" value="Guardar" /></p>
+                               </form>';
+                               if (isset($_POST['add'])) {
+                                $name = $_POST['name'];
+                                $ciudad = $_POST['ciudad'];
+                                $fecha = $_POST['fecha'];
+                                $numsocial =$_POST['numsocial'];
+
+
+                                $actualizacion = $database->insert("equipos", array("cod_equipo"=>1,"cod_liga"=>1,"nombre" => $name, "ciudad" => $ciudad,"num_social" => $numsocial, "fecha" => $fecha));
+                                $result = $actualizacion->fetch();
+                               }
                         } else {
                             echo '
 								<div class="panel-heading">
@@ -110,7 +121,7 @@
                                     var_dump($database->error());
                                 } else {
                                     echo "<script>
-                						alert('El resultado seleccionado ha sido borrado correctamente .');
+                						alert('El equipo seleccionado ha sido borrado correctamente .');
                 						window.location= 'equipos.php'
 										</script>";
 
