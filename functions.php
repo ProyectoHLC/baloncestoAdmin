@@ -42,13 +42,25 @@ function headerProfileMenu()
 	           </div>";
 }
 
+// Genera un selector de los equipos existentes en la base de datos
+
 function selectEquipo($label, $id, $equipos){
-   echo "<label>$label<select id='$id' name='$id'>";
+   echo "<label>$label <select id='$id' name='$id'>";
     foreach ($equipos as $equipo){
-        echo "$equipo[cod_equipo]";
         echo "<option value='$equipo[cod_equipo]'>$equipo[nombre]</option>";
     }
    echo "</select></label>";
+}
+
+// Genera un selector de años
+
+function selectYear(){
+    $id = 'fecha';
+    echo "<label>Fecha <select id='$id' name='$id'>";
+    foreach (range(date('Y'), 1900) as $year){
+        echo "<option value='$year'>$year</option>";
+    }
+    echo "</select></label>";
 }
 
 // Genera el footer

@@ -82,9 +82,9 @@ ob_start();
                     <label>
                     Resultado 1 <input name="resultEquipo2"  required type="text"/>
                     </label><br>
-                    <label>
-                      Fecha <input name="fecha" required type="text"/>
-                    </label><br>
+                    ';
+                            selectYear();
+                            echo '<br>
                     <input name="add" class="boton" type="submit" value="Añadir"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
                   </form>';

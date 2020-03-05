@@ -71,7 +71,7 @@
                             } else {
                                 echo "Error";
                             }
-                            $resultado = $database->select("resultados", "*", ["id_result" => 1]);
+                            $resultado = $database->select("resultados", "*", ["id_result" => $idResult]);
 
 
                             $equipo1 = $resultado[0]["cod_equipo1"];
