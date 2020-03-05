@@ -93,10 +93,10 @@
                     Equipo 2 <input name="equipo2" value="' . $nombreEquipo2[0] . '" readonly type="text" />
                     </label><br>
                     <label>
-                    Resultado 1 <input name="resultEquipo1" value="' . $result['result_equipo1'] . '" type="text"/>
+                    Resultado 1 <input name="resultEquipo1" value="' . $result['result_equipo1'] . '" type="number"/>
                     </label><br>
                     <label>
-                    Resultado 2 <input name="resultEquipo2" value="' . $result['result_equipo2'] . '" type="text"/>
+                    Resultado 2 <input name="resultEquipo2" value="' . $result['result_equipo2'] . '" type="number"/>
                     </label><br>';
                             selectYear($result['fecha']);
                             echo '<br>

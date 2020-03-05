@@ -1,5 +1,5 @@
 <?php
-ob_start();
+ob_start();     
     ?>
 <!DOCTYPE html>
 <html lang="ES">
@@ -77,10 +77,10 @@ ob_start();
                             selectEquipo("Equipo 2", "equipo2", $equipos);
                             echo '<br>
                     <label>
-                    Resultado 1 <input name="resultEquipo1" required type="text"/>
+                    Resultado 1 <input name="resultEquipo1" required type="number"/>
                     </label><br>
                     <label>
-                    Resultado 1 <input name="resultEquipo2"  required type="text"/>
+                    Resultado 1 <input name="resultEquipo2"  required type="number"/>
                     </label><br>
                     ';
                             selectYear();
