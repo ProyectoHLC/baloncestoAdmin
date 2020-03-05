@@ -74,6 +74,7 @@
                             foreach ($resultado as $result) {
                                 echo '<form action="editEquipo.php" method="post">
                                 <label>
+                               
                         <input name="id" value="' . $codEquipo . '" type="hidden" />
                     </label><br>
                     <label>
