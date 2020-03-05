@@ -1,11 +1,11 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #f7f7f7;
+    background: rgb(207,207,207);
+    background: radial-gradient(circle, rgba(207,207,207,1) 0%, rgba(79,79,79,1) 100%);
     background-size: 100%;
-    position: relative;
     margin: 0;
     font-size: 12px;
-    padding: 0;
+    padding: 0 0 10em;
 }
 
 .page-content > .row {
@@ -14,9 +14,13 @@ body {
     margin-top: 30px;
 }
 
+input, select {
+    display: flex;
+}
+
 table {
-    border: 1px solid cornsilk;
     margin: auto;
+    border-collapse: collapse;
 }
 
 td {
@@ -25,17 +29,33 @@ td {
 
 tr {
     text-align: center;
-
 }
 
+
+tr:nth-child(odd) {
+    background-color: #e8d451;
+}
+
+tr:nth-child(even) {
+    background-color: #f2d724;
+}
+
+tr:hover {
+    background-color: #62d12a;
+}
+
+
 th {
+    color: white;
     background-color: darkcyan;
     width: 10%;
     text-align: center;
 }
 
-td {
-    background-color: darkkhaki;
+tr {
+    padding: .3em;
+    border-style: solid;
+    border-width: .2em;
 }
 
 /* Footer */
@@ -50,18 +70,6 @@ footer {
     bottom: 0;
     position: fixed;
     width: 100%;
-}
-
-footer a {
-    color: #eee;
-    text-decoration: none;
-    border-bottom: 1px dotted #888;
-}
-
-footer a:hover {
-    color: #aaa;
-    text-decoration: none;
-    border: 0;
 }
 
 footer hr {
@@ -79,7 +87,7 @@ footer .copy {
 /* Logo & Navigation */
 
 .header {
-    height: 50px;
+    height: 4em;
     background-color: #2c3742;
 }
 
@@ -243,6 +251,9 @@ footer .copy {
 /* Sidebar navigation */
 
 .content-box, .content-box-large {
+    -webkit-box-shadow: 10px 10px 13px 3px rgba(66,66,66,1);
+    -moz-box-shadow: 10px 10px 13px 3px rgba(66,66,66,1);
+    box-shadow: 10px 10px 13px 3px rgba(66,66,66,1);
     margin-bottom: 30px;
     background: #fff;
     border-radius: 10px;
@@ -423,8 +434,6 @@ body {
     background: #fff;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -487,7 +496,8 @@ body {
     font-size: 13px;
     margin: 30px auto 0;
 }
-.login-wrapper .already p, .login-wrapper .already a{
+
+.login-wrapper .already p, .login-wrapper .already a {
     color: #222;
 }
 
@@ -670,7 +680,7 @@ body {
         margin: 10px auto;
     }
 
-    .sidebar, content-box {
+    .sidebar {
         margin-bottom: 30px;
         width: 100%;
         float: none;

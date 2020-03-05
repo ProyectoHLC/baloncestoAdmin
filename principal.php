@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="ES">
 <head>
@@ -70,21 +73,23 @@
 								<div class="panel-title">Datos Liga</div>
 							</div>
 							  <div class="panel-body">
-							  <form action="principal.php" method="post">
-								<p>Nombre: <input type="text" required name="name" /></p>
-								<p>Año: <input type="text" required name="year" /></p>
-								<p>Descripcion: <input type="text" required name="description" /></p>
-								<p><input type="submit" name="add" value="Guardar" /></p>
+							  <form action="principal.php" method="post">';
+                            input('Nombre', 'name', 'text', true);
+                            selectYear();
+                            input('Descripción', 'description', 'text', true);
+                            echo '<p><input type="submit" name="add" value="Guardar" /></p>
                                </form>';
-                               if (isset($_POST['add'])) {
-                                $year = $_POST['year'];
+                            if (isset($_POST['add'])) {
+                                $year = $_POST['fecha'];
                                 $name = $_POST['name'];
                                 $description = $_POST['description'];
 
 
-                                $actualizacion = $database->insert("liga", array("cod_liga"=>1,"nombre" => $name, "year" => $year,"descripcion" => $description));
+                                $actualizacion = $database->insert("liga", array("cod_liga" => 1, "nombre" => $name, "year" => $year, "descripcion" => $description));
                                 $result = $actualizacion->fetch();
-                               }
+                                header('Location: principal.php');
+                                ob_end_clean();
+                            }
                         } else {
                             echo '
 								<div class="panel-heading">
@@ -97,9 +102,9 @@
 		  				<div class="panel-body">
 								<table>
 								<tr> 
-								<th>Cod_liga</th>
+								<th>Código liga</th>
 								<th>Nombre</th>
-								<th>Año</th>
+								<th>Fecha</th>
 								<th>Descripcion</th>
 								</tr>
 								<tr> ';

@@ -85,22 +85,13 @@
                                 echo '<form action="editResultados.php" method="POST">
                                 <label>
                         <input name="id" value="' . $idResult . '" type="hidden" />
-                    </label><br>
-                    <label>
-                     Equipo 1 <input name="equipo1" value="' . $nombreEquipo1[0] . '" readonly type="text" />
-                    </label><br>
-                    <label>
-                    Equipo 2 <input name="equipo2" value="' . $nombreEquipo2[0] . '" readonly type="text" />
-                    </label><br>
-                    <label>
-                    Resultado 1 <input name="resultEquipo1" value="' . $result['result_equipo1'] . '" type="number"/>
-                    </label><br>
-                    <label>
-                    Resultado 2 <input name="resultEquipo2" value="' . $result['result_equipo2'] . '" type="number"/>
-                    </label><br>';
-                            selectYear($result['fecha']);
-                            echo '<br>
-                    <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
+                    </label>';
+                                input('Equipo 1', 'equipo1', 'text', false, $nombreEquipo1[0], true);
+                                input('Equipo 2', 'equipo2', 'text', false, $nombreEquipo2[0], true);
+                                input('Resultado del equipo 1', 'resultEquipo1', 'number', true, $result['result_equipo1']);
+                                input('Resultado del equipo 2', 'resultEquipo2', 'number', true, $result['result_equipo2']);
+                                selectYear($result['fecha']);
+                                echo '<input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
                   </form>';
                             }

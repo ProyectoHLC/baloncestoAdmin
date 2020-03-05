@@ -1,7 +1,6 @@
-
 <?php
 ob_start();
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="ES">
@@ -69,30 +68,20 @@ ob_start();
                             <div class="panel-title">Añadir equipo</div>
                         </div>
                         <div class="panel-body">
-                    <?php
+                            <?php
 
 
-                        echo '<form action="addEquipo.php" method="post">
-                    <label>
-                        Equipo <input name="idEquipo" required   type="text" />
-                    </label><br>
-                    <label>
-                    Nombre <input name="nombre" required type="text" />
-                    </label><br>
-                    <label>
-                    Ciudad <input name="ciudad" required type="text"/>
-                    </label><br>
-                    <label>
-                    Número social <input name="numSocial"  required type="text"/>
-                    </label><br>
-                    ';
+                            echo '<form action="addEquipo.php" method="post">';
+                            input('Nombre', 'nombre', 'text', true);
+                            input('Ciudad', 'ciudad', 'text', true);
+                            input('Número social', 'numSocial', 'number', true);
                             selectYear();
                             echo '<br>
                     <input name="add" class="boton" type="submit" value="Añadir"/>
                     <h3><a href="equipos.php">Volver a datos de equipos</a></h3>
                   </form>';
 
-                    ?>
+                            ?>
                             <?php
                             //Capturamos los nuevos datos introducidos por el usuario
                             if (isset($_POST['add'])) {
@@ -101,11 +90,11 @@ ob_start();
                                 $ciudad = $_POST['ciudad'];
                                 $numSocial = $_POST['numSocial'];
                                 $fecha = $_POST['fecha'];
+                                $codLiga = $database->select("liga", "*", true)[0]['cod_liga'];
 
-
-                                $actualizacion = $database->insert("equipos", array("cod_equipo" => $idEquipo, "cod_liga" => 1, "nombre" => $nombre, "ciudad" => $ciudad, "num_social" => $numSocial, "fecha" => $fecha));
+                                $actualizacion = $database->insert("equipos", array("cod_liga" => $codLiga, "nombre" => $nombre, "ciudad" => $ciudad, "num_social" => $numSocial, "fecha" => $fecha));
                                 $result = $actualizacion->fetch();
-                                
+
                                 // Comprobando errores
                                 if ($result) {
                                     var_dump($database->error());

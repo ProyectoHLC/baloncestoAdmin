@@ -76,22 +76,13 @@
                                 <label>
                                
                         <input name="id" value="' . $codEquipo . '" type="hidden" />
-                    </label><br>
-                    <label>
-                        Código de equipo <input name="cod_equipo" value="' . $result['cod_equipo'] . '" readonly type="text" />
-                    </label><br>
-                    <label>
-                        Nombre del equipo <input name="nombre" value="' . $result['nombre'] . '" type="text" />
-                    </label><br>
-                    <label>
-                        Ciudad <input name="ciudad" value="' . $result['ciudad'] . '" type="text"/>
-                    </label><br>
-                    <label>
-                       Número social <input name="num_social" value="' . $result['num_social'] . '" type="text"/>
-                    </label><br>
-                    ';
-                            selectYear($result['fecha']);
-                            echo '<br>
+                    </label>';
+                                input('Código de equipo', 'cod_equipo', 'text', 'false', $result['cod_equipo'], true);
+                                input('Nombre del equipo', 'nombre', 'text', true, $result['nombre']);
+                                input('Ciudad', 'ciudad', 'text', true, $result['ciudad']);
+                                input('Número social', 'num_social', 'number', true, $result['num_social']);
+                                selectYear($result['fecha']);
+                                echo '<br>
                     <input type="hidden" name="idEquipo"/>
                     <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="equipos.php">Volver a datos de equipos</a></h3>

@@ -1,6 +1,6 @@
 <?php
 ob_start();
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="ES">
 <head>
@@ -70,19 +70,11 @@ ob_start();
                             <?php
                             $resultado = $database->select("liga", "*", true);
                             foreach ($resultado as $result) {
-                                echo '<form action="editLiga.php" method="post">
-                    <label>
-                    Nombre
-                        <input name="nombre" value="' . $result['nombre'] . '" type="text" />
-                    </label><br>
-                    ';
-                            selectYear($result['year']);
-                            echo '<br>
-                    <label>
-                    Descripción
-                        <input name="descripcion" value="' . $result['descripcion'] . '" type="text"/>
-                    </label>
-                    <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
+                                echo '<form action="editLiga.php" method="post">';
+                                input('Nombre', 'nombre', 'text', true, $result['nombre']);
+                                selectYear($result['year']);
+                                input('Descripción', 'descripcion', 'text', true, $result['descripcion']);
+                                echo '<input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <input type="hidden" name="codLiga"/>
                     <h3><a href="principal.php">Volver a datos liga</a></h3>
                   </form>';

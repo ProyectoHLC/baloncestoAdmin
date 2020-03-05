@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -71,27 +74,33 @@
                         $resultado = $database->select("equipos", "*", true);
                         $count = $database->count("equipos", "*", true);
                         if (($count) == 0) {
-                            echo '<div class="panel-heading">
-								<div class="panel-title">Datos Equipos</div>
-							</div>
+                            $liga = $database->count("liga", "*", true);
+                            if ($liga == 0) {
+                                echo "<h3>Debe crear una liga si quiere añadir un equipo</h3>";
+                            } else {
+                                echo '
 							  <div class="panel-body">
-							  <form action="equipos.php" method="post">
-								<p>Nombre: <input type="text" required name="name" /></p>
-								<p>Ciudad: <input type="text" required name="ciudad" /></p>
-                                <p>Num Social: <input type="text" required name="numsocial" /></p>
-                                <p>Fecha: <input type="text" required name="fecha" /></p>
-								<p><input type="submit" name="add" value="Guardar" /></p>
+							  <h3>No hay equipos</h3>
+							  <form action="equipos.php" method="post">';
+                                input('Nombre', 'name', 'text', true);
+                                input('Ciudad', 'ciudad', 'text', true);
+                                input('Número social', 'numsocial', 'number', true);
+                                selectYear();
+                                echo '<p><input type="submit" name="add" value="Guardar" /></p>
                                </form>';
-                               if (isset($_POST['add'])) {
-                                $name = $_POST['name'];
-                                $ciudad = $_POST['ciudad'];
-                                $fecha = $_POST['fecha'];
-                                $numsocial =$_POST['numsocial'];
+                                if (isset($_POST['add'])) {
+                                    $name = $_POST['name'];
+                                    $ciudad = $_POST['ciudad'];
+                                    $fecha = $_POST['fecha'];
+                                    $numsocial = $_POST['numsocial'];
+                                    $codLiga = $database->select("liga", "*", true)[0]['cod_liga'];
 
-
-                                $actualizacion = $database->insert("equipos", array("cod_equipo"=>1,"cod_liga"=>1,"nombre" => $name, "ciudad" => $ciudad,"num_social" => $numsocial, "fecha" => $fecha));
-                                $result = $actualizacion->fetch();
-                               }
+                                    $actualizacion = $database->insert("equipos", array("cod_liga" => $codLiga, "nombre" => $name, "ciudad" => $ciudad, "num_social" => $numsocial, "fecha" => $fecha));
+                                    $result = $actualizacion->fetch();
+                                    header('Location: equipos.php');
+                                    ob_end_clean();
+                                }
+                            }
                         } else {
                             echo '
 								<div class="panel-heading">
@@ -107,7 +116,7 @@
 								<th>Equipo</th>
 								<th>Nombre</th>
 								<th>Ciudad</th>
-								<th>num_social</th>
+								<th>Num social</th>
 								<th>Fecha</th>
 								<th>Editar / Borrar</th>
 								</tr>
@@ -116,9 +125,9 @@
                                 $deleteId = $_GET['deleteId'];
                                 $actualizacion = $database->delete("equipos", array("cod_equipo" => $deleteId));
                                 $result = $actualizacion->fetch();
-                                $comprobar = $database->count("equipos","*", array("cod_equipo" => $deleteId));
+                                $comprobar = $database->count("equipos", "*", array("cod_equipo" => $deleteId));
                                 // Comprobando errores
-                                if ($comprobar!=0) {
+                                if ($comprobar != 0) {
                                     echo "<script>
                                     alert('El equipo seleccionado tiene resultados activos. No se puede borrar .');
                                     window.location= 'equipos.php'

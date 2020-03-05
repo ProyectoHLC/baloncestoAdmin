@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="ES">
 <head>
@@ -70,39 +73,55 @@
                         $resultado = $database->select("resultados", "*", true);
                         $count = $database->count("resultados", "*", true);
                         if (($count) == 0) {
-                            echo '<div class="panel-heading">
-								<div class="panel-title">Resultados</div>
-							</div>
+                            $numLiga = $database->count("liga", "*", true);
+                            $numEquipos = $database->count("equipos", "*", true);
+                            if ($numLiga == 0) {
+                                echo "<h3>Debe crear una liga si quiere añadir los resultados de un partido</h3>";
+                            } else if ($numEquipos < 2) {
+                                echo "<h3>Debe tener dos equipos como mínimo para poder añadir resultados</h3>";
+                            } else {
+                                echo '
 							  <div class="panel-body">
-							  <h1>No hay resultados</h1>
+							  <h3>No hay resultados</h3>
 							  <form action="resultados.php" method="post">
-								<p>Equipo 1: <input type="text" required name="equipo1" /></p>
-								<p>Equipo 2: <input type="text" required name="equipo2" /></p>
-								<p>Resultado 1: <input type="text" required name="result1" /></p>
-								<p>Resultado 2: <input type="text" required name="result2" /></p>
-								<p>Fecha: <input type="text" name="fecha" required /></p>
+								';
+                                $equipos = $database->select("equipos", "*", true);
+                                selectEquipo('Equipo 1', 'equipo1', $equipos);
+                                selectEquipo('Equipo 2', 'equipo2', $equipos);
+                                input('Resultado del equipo 1', 'result1', 'number', true);
+                                input('Resultado del equipo 2', 'result2', 'number', true);
+                                selectYear();
+                                echo '
 								<p><input type="submit" name="add" value="Añadir" /></p>
 							   </form>';
-                            if (isset($_POST['add'])) {
-                                if (isset($_POST['equipo1']) && isset($_POST['equipo2']) && isset($_POST['result1']) && isset($_POST['result2']) && isset($_POST['fecha'])) {
-                                    $equipo1 = $_POST['equipo1'];
-                                    $equipo2 = $_POST['equipo2'];
-                                    $result1 = $_POST['result1'];
-                                    $result2 = $_POST['result2'];
-                                    $fecha = $_POST['fecha'];
-
-                                    $insertar = $database->insert("resultados", [
-                                        "cod_equipo1" => $equipo1,
-                                        "cod_equipo2" => $equipo2,
-                                        "result_equipo1" => $result1,
-                                        "result_equipo2" => $result2,
-                                        "fecha" => $fecha
-                                    ]);
-                                    // Comprobando errores
-                                    if ($insertar == 0) {
-                                        var_dump($database->error());
-                                    } else {
-                                        header('Location: resultados.php');
+                                if (isset($_POST['add'])) {
+                                    if (isset($_POST['equipo1']) && isset($_POST['equipo2']) && isset($_POST['result1']) && isset($_POST['result2']) && isset($_POST['fecha'])) {
+                                        $equipo1 = $_POST['equipo1'];
+                                        $equipo2 = $_POST['equipo2'];
+                                        $result1 = $_POST['result1'];
+                                        $result2 = $_POST['result2'];
+                                        $fecha = $_POST['fecha'];
+                                        if ($equipo1 === $equipo2) {
+                                            echo "<script>
+                                    alert('Los equipos deben ser diferentes.');
+                                    window.location= 'addResultados.php'
+                                    </script>";
+                                        } else {
+                                            $insertar = $database->insert("resultados", [
+                                                "cod_equipo1" => $equipo1,
+                                                "cod_equipo2" => $equipo2,
+                                                "result_equipo1" => $result1,
+                                                "result_equipo2" => $result2,
+                                                "fecha" => $fecha
+                                            ]);
+                                            // Comprobando errores
+                                            if ($insertar == 0) {
+                                                var_dump($database->error());
+                                            } else {
+                                                header('Location: resultados.php');
+                                                ob_end_clean();
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -131,9 +150,9 @@
                                 $actualizacion = $database->delete("resultados", array("id_result" => $deleteId));
                                 $result = $actualizacion->fetch();
                                 // Comprobando errores
-                                $comprobar = $database->count("resultados","*", array("id_result" => $deleteId));
+                                $comprobar = $database->count("resultados", "*", array("id_result" => $deleteId));
                                 // Comprobando errores
-                                if ($comprobar!=0) {
+                                if ($comprobar != 0) {
                                     echo "<script>
                                     alert('El resultado seleccionado no se ha podido eliminar .');
                                     window.location= 'resultados.php'

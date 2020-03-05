@@ -1,6 +1,6 @@
 <?php
-ob_start();     
-    ?>
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="ES">
 <head>
@@ -73,19 +73,11 @@ ob_start();
                             echo '<form action="addResultados.php" method="post">';
                             $equipos = $database->select("equipos", "*", true);
                             selectEquipo("Equipo 1", "equipo1", $equipos);
-                            echo '<br>';
                             selectEquipo("Equipo 2", "equipo2", $equipos);
-                            echo '<br>
-                    <label>
-                    Resultado 1 <input name="resultEquipo1" required type="number"/>
-                    </label><br>
-                    <label>
-                    Resultado 1 <input name="resultEquipo2"  required type="number"/>
-                    </label><br>
-                    ';
+                            input('Resultado del equipo 1', 'resultEquipo1', 'number', true);
+                            input('Resultado del equipo 2', 'resultEquipo2', 'number', true);
                             selectYear();
-                            echo '<br>
-                    <input name="add" class="boton" type="submit" value="Añadir"/>
+                            echo '<input name="add" class="boton" type="submit" value="Añadir"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
                   </form>';
 
@@ -99,12 +91,12 @@ ob_start();
                                 $result_equipo2 = $_POST['resultEquipo2'];
                                 $fecha = $_POST['fecha'];
 
-                                if($equipo1===$equipo2){
+                                if ($equipo1 === $equipo2) {
                                     echo "<script>
                                     alert('Los equipos deben ser diferentes.');
                                     window.location= 'addResultados.php'
                                     </script>";
-                                }else{
+                                } else {
                                     $actualizacion = $database->insert("resultados", array("cod_equipo1" => $equipo1, "cod_equipo2" => $equipo2, "result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha));
                                     $result = $actualizacion->fetch();
                                     // Comprobando errores
@@ -113,10 +105,10 @@ ob_start();
                                     } else {
                                         header('Location: resultados.php');
                                         ob_end_flush();
-    
+
                                     }
                                 }
-                                
+
                             }
 
                             ?>

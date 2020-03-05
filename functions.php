@@ -6,6 +6,9 @@ require 'Medoo.php';
 
 use Medoo\Medoo;
 
+// Usuario: Baldomero
+// Contraseña: 12345678
+
 $database = new Medoo([
     'database_type' => 'mysql',
     'database_name' => 'baloncesto',
@@ -44,28 +47,50 @@ function headerProfileMenu()
 
 // Genera un selector de los equipos existentes en la base de datos
 
-function selectEquipo($label, $id, $equipos){
-   echo "<label>$label <select id='$id' name='$id'>";
-    foreach ($equipos as $equipo){
+function selectEquipo($label, $id, $equipos)
+{
+    echo "<label>$label <select id='$id' name='$id'>";
+    foreach ($equipos as $equipo) {
         echo "<option value='$equipo[cod_equipo]'>$equipo[nombre]</option>";
     }
-   echo "</select></label>";
+    echo "</select></label><br/>";
+}
+
+// Genera un input con distintas variables. El valor actual y si es un input solo de lectura son opcionales.
+
+function input($label, $name, $type, $isRequired, $currentValue = null, $readOnly = false)
+{
+    $read = '';
+    $required = '';
+    if ($readOnly) {
+        $read = 'readonly';
+    }
+    if ($type == 'text') { // Controla la longitud máxima dependiendo del tipo de input.
+        $length = "maxlength='45'";
+    } else {
+        $length = "max='99999999999' min='0'";
+    }
+    if ($isRequired) {
+        $required = 'required';
+    }
+    echo "<label>$label <input name='$name' $required $length type='$type' value='$currentValue' $read/></label><br/>";
 }
 
 // Genera un selector de años
 
-function selectYear($currentValue = null){
+function selectYear($currentValue = null)
+{
     $id = 'fecha';
     $minYear = 1900;
     echo "<label>Fecha <select id='$id' name='$id'>";
-    foreach (range(date('Y'), $minYear) as $year){
+    foreach (range(date('Y'), $minYear) as $year) {
         echo "<option value='$year'";
-        if ($currentValue == $year){
+        if ($currentValue == $year) {
             echo " selected";
         }
         echo ">$year</option>";
     }
-    echo "</select></label>";
+    echo "</select></label><br/>";
 }
 
 // Genera el footer
