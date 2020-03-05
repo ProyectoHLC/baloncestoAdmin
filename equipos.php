@@ -116,15 +116,18 @@
                                 $deleteId = $_GET['deleteId'];
                                 $actualizacion = $database->delete("equipos", array("cod_equipo" => $deleteId));
                                 $result = $actualizacion->fetch();
+                                $comprobar = $database->count("equipos","*", array("cod_equipo" => $deleteId));
                                 // Comprobando errores
-                                if ($result) {
-                                    var_dump($database->error());
+                                if ($comprobar!=0) {
+                                    echo "<script>
+                                    alert('El equipo seleccionado tiene resultados activos. No se puede borrar .');
+                                    window.location= 'equipos.php'
+                                    </script>";
                                 } else {
                                     echo "<script>
-                						alert('El equipo seleccionado ha sido borrado correctamente .');
-                						window.location= 'equipos.php'
-										</script>";
-
+                                    alert('El equipo seleccionado ha sido eliminado correctamente .');
+                                    window.location= 'equipos.php'
+                                    </script>";
                                 }
 
                             }
