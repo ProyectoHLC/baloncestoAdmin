@@ -1,3 +1,6 @@
+<?php
+ob_start();
+    ?>
 <!DOCTYPE html>
 <html lang="ES">
 <head>
@@ -105,6 +108,8 @@
                                     var_dump($database->error());
                                 } else {
                                     header('Location: resultados.php');
+                                    ob_end_flush();
+
                                 }
                             }
 

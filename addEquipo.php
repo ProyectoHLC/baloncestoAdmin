@@ -1,3 +1,8 @@
+
+<?php
+ob_start();
+    ?>
+
 <!DOCTYPE html>
 <html lang="ES">
 <head>
@@ -64,10 +69,10 @@
                             <div class="panel-title">Añadir equipo</div>
                         </div>
                         <div class="panel-body">
-                            <?php
+                    <?php
 
 
-                            echo '<form action="addEquipo.php" method="post">
+                        echo '<form action="addEquipo.php" method="post">
                     <label>
                         Equipo <input name="idEquipo" required   type="text" />
                     </label><br>
@@ -87,7 +92,7 @@
                     <h3><a href="equipos.php">Volver a datos de equipos</a></h3>
                   </form>';
 
-                            ?>
+                    ?>
                             <?php
                             //Capturamos los nuevos datos introducidos por el usuario
                             if (isset($_POST['add'])) {
@@ -100,11 +105,13 @@
 
                                 $actualizacion = $database->insert("equipos", array("cod_equipo" => $idEquipo, "cod_liga" => 1, "nombre" => $nombre, "ciudad" => $ciudad, "num_social" => $numSocial, "fecha" => $fecha));
                                 $result = $actualizacion->fetch();
+                                
                                 // Comprobando errores
                                 if ($result) {
                                     var_dump($database->error());
                                 } else {
                                     header('Location: equipos.php');
+                                    ob_end_flush();
                                 }
                             }
 
