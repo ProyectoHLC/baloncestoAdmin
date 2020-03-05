@@ -106,6 +106,7 @@ ob_start();
 								<th>Nombre</th>
 								<th>Fecha</th>
 								<th>Descripcion</th>
+								<th>Nº equipos</th>
 								</tr>
 								<tr> ';
                             foreach ($resultado as $result) {
@@ -119,6 +120,10 @@ ob_start();
                                 echo $result['year'];
                                 echo '</td><td>';
                                 echo $result['descripcion'];
+                                echo '</td><td>';
+                                $liga = $resultado[0]["cod_liga"];
+                                $numEquipos = $database->count("equipos", "*", ["cod_liga" => $liga]);
+                                echo $numEquipos;
                                 echo '</td>';
                                 echo '</tr>';
                             }
