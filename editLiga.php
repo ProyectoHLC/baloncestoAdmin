@@ -72,10 +72,9 @@
                     Nombre
                         <input name="nombre" value="' . $result['nombre'] . '" type="text" />
                     </label><br>
-                    <label>
-                    Fecha
-                        <input name="anio" value="' . $result['year'] . '" type="text" />
-                    </label><br>
+                    ';
+                            selectYear($result['year']);
+                            echo '<br>
                     <label>
                     Descripción
                         <input name="descripcion" value="' . $result['descripcion'] . '" type="text"/>

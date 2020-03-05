@@ -54,11 +54,16 @@ function selectEquipo($label, $id, $equipos){
 
 // Genera un selector de años
 
-function selectYear(){
+function selectYear($currentValue = null){
     $id = 'fecha';
+    $minYear = 1900;
     echo "<label>Fecha <select id='$id' name='$id'>";
-    foreach (range(date('Y'), 1900) as $year){
-        echo "<option value='$year'>$year</option>";
+    foreach (range(date('Y'), $minYear) as $year){
+        echo "<option value='$year'";
+        if ($currentValue == $year){
+            echo " selected";
+        }
+        echo ">$year</option>";
     }
     echo "</select></label>";
 }

@@ -97,10 +97,9 @@
                     </label><br>
                     <label>
                     Resultado 2 <input name="resultEquipo2" value="' . $result['result_equipo2'] . '" type="text"/>
-                    </label><br>
-                    <label>
-                    Fecha <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
-                    </label><br>
+                    </label><br>';
+                            selectYear($result['fecha']);
+                            echo '<br>
                     <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="resultados.php">Volver a datos de resultados</a></h3>
                   </form>';

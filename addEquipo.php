@@ -85,9 +85,9 @@ ob_start();
                     <label>
                     Número social <input name="numSocial"  required type="text"/>
                     </label><br>
-                    <label>
-                      Fecha <input name="fecha" required type="text"/>
-                    </label><br>
+                    ';
+                            selectYear();
+                            echo '<br>
                     <input name="add" class="boton" type="submit" value="Añadir"/>
                     <h3><a href="equipos.php">Volver a datos de equipos</a></h3>
                   </form>';

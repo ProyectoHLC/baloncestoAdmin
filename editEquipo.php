@@ -89,9 +89,9 @@
                     <label>
                        Número social <input name="num_social" value="' . $result['num_social'] . '" type="text"/>
                     </label><br>
-                    <label>
-                        Fecha <input name="fecha" value="' . $result['fecha'] . '" type="text"/>
-                    </label><br>
+                    ';
+                            selectYear($result['fecha']);
+                            echo '<br>
                     <input type="hidden" name="idEquipo"/>
                     <input name="actualizar" class="boton" type="submit" value="Actualizar"/>
                     <h3><a href="equipos.php">Volver a datos de equipos</a></h3>
