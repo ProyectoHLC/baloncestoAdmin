@@ -99,17 +99,24 @@ ob_start();
                                 $result_equipo2 = $_POST['resultEquipo2'];
                                 $fecha = $_POST['fecha'];
 
-
-                                $actualizacion = $database->insert("resultados", array("cod_equipo1" => $equipo1, "cod_equipo2" => $equipo2, "result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha));
-                                $result = $actualizacion->fetch();
-                                // Comprobando errores
-                                if ($result) {
-                                    var_dump($database->error());
-                                } else {
-                                    header('Location: resultados.php');
-                                    ob_end_flush();
-
+                                if($equipo1===$equipo2){
+                                    echo "<script>
+                                    alert('Los equipos deben ser diferentes.');
+                                    window.location= 'addResultados.php'
+                                    </script>";
+                                }else{
+                                    $actualizacion = $database->insert("resultados", array("cod_equipo1" => $equipo1, "cod_equipo2" => $equipo2, "result_equipo1" => $result_equipo1, "result_equipo2" => $result_equipo2, "fecha" => $fecha));
+                                    $result = $actualizacion->fetch();
+                                    // Comprobando errores
+                                    if ($result) {
+                                        var_dump($database->error());
+                                    } else {
+                                        header('Location: resultados.php');
+                                        ob_end_flush();
+    
+                                    }
                                 }
+                                
                             }
 
                             ?>
